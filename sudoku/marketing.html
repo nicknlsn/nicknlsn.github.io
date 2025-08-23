@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku - Classic Number Puzzle Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2C2C2E;
+            background: linear-gradient(135deg, #F0F0F3 0%, #E6E6EA 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: #F0F0F3;
+            border-radius: 27px;
+            box-shadow: 
+                8px 8px 16px #D1D1D6,
+                -8px -8px 16px #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #007AFF;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 24px;
+            color: #6D6D7D;
+            margin-bottom: 40px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .app-store-badge {
+            display: inline-block;
+            width: 200px;
+            height: 67px;
+            background: #000;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature-card {
+            background: #F0F0F3;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 
+                6px 6px 12px #D1D1D6,
+                -6px -6px 12px #FFFFFF;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #2C2C2E;
+        }
+        
+        .feature-card p {
+            color: #6D6D7D;
+            font-size: 16px;
+        }
+        
+        .screenshots {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .screenshots h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #2C2C2E;
+        }
+        
+        .screenshot-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .screenshot {
+            width: 250px;
+            height: 540px;
+            background: #F0F0F3;
+            border-radius: 20px;
+            box-shadow: 
+                10px 10px 20px #D1D1D6,
+                -10px -10px 20px #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6D6D7D;
+            flex-shrink: 0;
+        }
+        
+        .game-preview {
+            width: 200px;
+            height: 200px;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: repeat(9, 1fr);
+            gap: 1px;
+            background: #D1D1D6;
+            padding: 2px;
+            border-radius: 8px;
+        }
+        
+        .cell {
+            background: #F0F0F3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2C2C2E;
+        }
+        
+        .cell.user {
+            color: #007AFF;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6D6D7D;
+            border-top: 1px solid #E5E5EA;
+            margin-top: 80px;
+        }
+        
+        footer a {
+            color: #007AFF;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="app-icon">9</div>
+            <h1>Sudoku</h1>
+            <p class="tagline">Classic Number Puzzle Game</p>
+            <p style="color: #6D6D7D; font-size: 18px; margin-top: 20px;">
+                Challenge your mind with 25,000 handcrafted puzzles across 5 difficulty levels
+            </p>
+        </header>
+        
+        <div class="download-section">
+            <a href="https://apps.apple.com/us/app/sudoku-9x9-number-game/id6749164735" class="app-store-badge">
+                📱 Download on App Store
+            </a>
+        </div>
+        
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon" style="color: white;">🎯</div>
+                <h3>25,000 Puzzles</h3>
+                <p>Never run out of challenges with our massive collection of carefully curated puzzles</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="color: white;">📈</div>
+                <h3>5 Difficulty Levels</h3>
+                <p>From Easy to Diabolical - perfect for beginners and experts alike</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="color: white;">🌙</div>
+                <h3>Dark & Light Themes</h3>
+                <p>Beautiful neumorphic design that's easy on the eyes, day or night</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="color: white;">📝</div>
+                <h3>Smart Notes System</h3>
+                <p>Track possible numbers with our intelligent note-taking feature</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="color: white;">💡</div>
+                <h3>Visual Helpers</h3>
+                <p>Highlight related cells, matching numbers, and invalid moves</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="color: white;">📱</div>
+                <h3>Works Offline</h3>
+                <p>Play anywhere, anytime - no internet connection required</p>
+            </div>
+        </section>
+        
+        <section class="screenshots">
+            <h2>Experience Sudoku</h2>
+            <div class="screenshot-container">
+                <div class="screenshot">
+                    <div class="game-preview">
+                        <!-- Sample sudoku grid cells -->
+                        <div class="cell">5</div>
+                        <div class="cell">3</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">7</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">6</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell user">1</div>
+                        <div class="cell">9</div>
+                        <div class="cell">5</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell user">9</div>
+                        <div class="cell">8</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">6</div>
+                        <div class="cell"></div>
+                        <div class="cell">8</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">6</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">3</div>
+                        <div class="cell">4</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">8</div>
+                        <div class="cell"></div>
+                        <div class="cell">3</div>
+                        <div class="cell"></div>
+                        <div class="cell user">1</div>
+                        <div class="cell"></div>
+                        <div class="cell">7</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell user">2</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">6</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">6</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell user">2</div>
+                        <div class="cell">8</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">4</div>
+                        <div class="cell">1</div>
+                        <div class="cell user">9</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">5</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">8</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell user">7</div>
+                        <div class="cell">9</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section style="text-align: center; padding: 40px 20px; background: rgba(0, 122, 255, 0.05); border-radius: 20px; margin: 60px 0;">
+            <h2 style="font-size: 32px; margin-bottom: 20px; color: #2C2C2E;">Ready to Challenge Yourself?</h2>
+            <p style="font-size: 18px; color: #6D6D7D; margin-bottom: 30px;">
+                Join thousands of players enjoying Sudoku every day
+            </p>
+            <a href="https://apps.apple.com/us/app/sudoku-9x9-number-game/id6749164735" class="app-store-badge">
+                📱 Get Started Free
+            </a>
+        </section>
+        
+        <footer>
+            <p>© 2025 Nicholas Nelson. All rights reserved.</p>
+            <p style="margin-top: 10px;">
+                <a href="/sudoku/support.html#privacy">Privacy Policy</a> • 
+                <a href="/sudoku/support.html#support">Support</a> • 
+                <a href="mailto:feedback@sudokuservice.com">Contact</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
