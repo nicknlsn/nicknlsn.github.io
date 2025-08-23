@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Light Mode Version -->
+  <defs>
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="6" result="offsetblur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.15"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#F2F2F7"/>
+  
+  <!-- White surface for 3x3 grid - now edge to edge -->
+  <rect x="0" y="0" width="1024" height="1024" fill="#FFFFFF" filter="url(#shadow)"/>
+  
+  <!-- Grid lines - using filled rectangles for better rendering - now edge to edge -->
+  <!-- Vertical lines -->
+  <rect x="339" y="0" width="5" height="1024" fill="#8E8E93" />
+  <rect x="680" y="0" width="5" height="1024" fill="#8E8E93" />
+  
+  <!-- Horizontal lines -->
+  <rect x="0" y="339" width="1024" height="5" fill="#8E8E93" />
+  <rect x="0" y="680" width="1024" height="5" fill="#8E8E93" />
+  
+  <!-- Cell highlights for visual interest -->
+  <!-- Selected cell effect on center -->
+  <rect x="344" y="344" width="336" height="336" fill="#d0ebff" opacity="0.6"/>
+  
+  <!-- Numbers positioned for true 3x3 grid filling entire area -->
+  <g font-family="-apple-system, SF Pro Display, Helvetica Neue, Arial, sans-serif" font-size="200" font-weight="600" text-anchor="middle">
+    <!-- Top row -->
+    <!-- 1 (given) - top left -->
+    <text x="170" y="250" fill="#333333">1</text>
+    <!-- 3 (user input) - top middle -->
+    <text x="512" y="250" fill="#007AFF">3</text>
+    <!-- 4 (given) - top right -->
+    <text x="854" y="250" fill="#333333">4</text>
+    
+    <!-- Middle row -->
+    <!-- 2 (given) - middle left -->
+    <text x="170" y="580" fill="#333333">2</text>
+    <!-- Empty - middle center -->
+    <!-- 8 (user input) - middle right -->
+    <text x="854" y="580" fill="#007AFF">8</text>
+    
+    <!-- Bottom row -->
+    <!-- 6 (user input) - bottom left -->
+    <text x="170" y="910" fill="#007AFF">6</text>
+    <!-- 7 (given) - bottom middle -->
+    <text x="512" y="910" fill="#333333">7</text>
+    <!-- 9 (user input) - bottom right -->
+    <text x="854" y="910" fill="#007AFF">9</text>
+  </g>
+</svg>

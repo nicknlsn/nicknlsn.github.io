@@ -34,7 +34,7 @@
             width: 120px;
             height: 120px;
             margin: 0 auto 30px;
-            background: #F0F0F3;
+            background: #FFFFFF;
             border-radius: 27px;
             box-shadow: 
                 8px 8px 16px #D1D1D6,
@@ -42,9 +42,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            font-weight: bold;
-            color: #007AFF;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 27px;
         }
         
         h1 {
@@ -167,10 +173,11 @@
             display: grid;
             grid-template-columns: repeat(9, 1fr);
             grid-template-rows: repeat(9, 1fr);
-            gap: 1px;
-            background: #D1D1D6;
+            gap: 0;
+            background: #2C2C2E;
             padding: 2px;
             border-radius: 8px;
+            position: relative;
         }
         
         .cell {
@@ -181,6 +188,17 @@
             font-size: 12px;
             font-weight: 600;
             color: #2C2C2E;
+            border: 0.5px solid #D1D1D6;
+        }
+        
+        /* Thicker borders for 3x3 sections */
+        .cell:nth-child(3n) {
+            border-right: 1.5px solid #2C2C2E;
+        }
+        
+        .cell:nth-child(n+19):nth-child(-n+27),
+        .cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 1.5px solid #2C2C2E;
         }
         
         .cell.user {
@@ -222,7 +240,9 @@
 <body>
     <div class="container">
         <header>
-            <div class="app-icon">9</div>
+            <div class="app-icon">
+                <img src="assets/sudoku-3x3-light.svg" alt="Sudoku App Icon">
+            </div>
             <h1>Sudoku</h1>
             <p class="tagline">Classic Number Puzzle Game</p>
             <p style="color: #6D6D7D; font-size: 18px; margin-top: 20px;">
@@ -239,7 +259,7 @@
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon" style="color: white;">🎯</div>
-                <h3>25,000 Puzzles</h3>
+                <h3>Tens of thousands of Puzzles</h3>
                 <p>Never run out of challenges with our massive collection of carefully curated puzzles</p>
             </div>
             
@@ -279,87 +299,96 @@
             <div class="screenshot-container">
                 <div class="screenshot">
                     <div class="game-preview">
-                        <!-- Sample sudoku grid cells -->
-                        <div class="cell">5</div>
-                        <div class="cell">3</div>
+                        <!-- Row 1: 027083009 -->
                         <div class="cell"></div>
-                        <div class="cell"></div>
+                        <div class="cell">2</div>
                         <div class="cell">7</div>
                         <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell">6</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell user">1</div>
-                        <div class="cell">9</div>
-                        <div class="cell">5</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell user">9</div>
                         <div class="cell">8</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell">6</div>
-                        <div class="cell"></div>
-                        <div class="cell">8</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell">6</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
                         <div class="cell">3</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">9</div>
+                        <!-- Row 2: 000009408 -->
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">9</div>
+                        <div class="cell">4</div>
+                        <div class="cell"></div>
+                        <div class="cell">8</div>
+                        <!-- Row 3: 098104006 -->
+                        <div class="cell"></div>
+                        <div class="cell">9</div>
+                        <div class="cell">8</div>
+                        <div class="cell">1</div>
+                        <div class="cell"></div>
                         <div class="cell">4</div>
                         <div class="cell"></div>
                         <div class="cell"></div>
-                        <div class="cell">8</div>
-                        <div class="cell"></div>
+                        <div class="cell">6</div>
+                        <!-- Row 4: 513208790 -->
+                        <div class="cell">5</div>
+                        <div class="cell">1</div>
                         <div class="cell">3</div>
+                        <div class="cell">2</div>
                         <div class="cell"></div>
-                        <div class="cell user">1</div>
+                        <div class="cell">8</div>
+                        <div class="cell">7</div>
+                        <div class="cell">9</div>
+                        <div class="cell"></div>
+                        <!-- Row 5: 089007501 -->
+                        <div class="cell"></div>
+                        <div class="cell">8</div>
+                        <div class="cell">9</div>
+                        <div class="cell"></div>
                         <div class="cell"></div>
                         <div class="cell">7</div>
+                        <div class="cell">5</div>
                         <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell user">2</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell">6</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
-                        <div class="cell">6</div>
+                        <div class="cell">1</div>
+                        <!-- Row 6: 200001800 -->
+                        <div class="cell">2</div>
                         <div class="cell"></div>
                         <div class="cell"></div>
                         <div class="cell"></div>
                         <div class="cell"></div>
-                        <div class="cell user">2</div>
+                        <div class="cell">1</div>
                         <div class="cell">8</div>
                         <div class="cell"></div>
                         <div class="cell"></div>
-                        <div class="cell"></div>
+                        <!-- Row 7: 041000000 -->
                         <div class="cell"></div>
                         <div class="cell">4</div>
                         <div class="cell">1</div>
-                        <div class="cell user">9</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <!-- Row 8: 830070010 -->
+                        <div class="cell">8</div>
+                        <div class="cell">3</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">7</div>
+                        <div class="cell"></div>
+                        <div class="cell"></div>
+                        <div class="cell">1</div>
+                        <div class="cell"></div>
+                        <!-- Row 9: 005810040 -->
                         <div class="cell"></div>
                         <div class="cell"></div>
                         <div class="cell">5</div>
-                        <div class="cell"></div>
-                        <div class="cell"></div>
                         <div class="cell">8</div>
+                        <div class="cell">1</div>
                         <div class="cell"></div>
                         <div class="cell"></div>
-                        <div class="cell user">7</div>
-                        <div class="cell">9</div>
+                        <div class="cell">4</div>
+                        <div class="cell"></div>
                     </div>
                 </div>
             </div>
